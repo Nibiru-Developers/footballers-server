@@ -1,5 +1,5 @@
 import createServer from "./server/createServer";
-import Env from "./utils/variables/Env";
+import Env from "./utils/Env";
 
 createServer.listen(Env.PORT, () => {
   console.log(`Server started on port ${Env.PORT} with ${Env.NODE_ENV} environment`);

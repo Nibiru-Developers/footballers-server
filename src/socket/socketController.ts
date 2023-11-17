@@ -1,66 +1,72 @@
 import { Server as SocketServer, Socket } from "socket.io";
-import { Mutex } from "async-mutex";
+import { v4 as uuidv4 } from "uuid";
+import UsersData, { UserType } from "./data/UsersData";
 
-// ###
-const mutex = new Mutex();
-export type UserOnlineType = {
-  socket: Socket;
-  userId: string;
-  userName: string;
-};
-let usersOnline: UserOnlineType[] = [];
-
-export async function addUser(user: UserOnlineType) {
-  const release = await mutex.acquire();
-  try {
-    usersOnline.push(user);
-  } finally {
-    release();
-  }
-}
-
-export async function deleteUser(socketId: string) {
-  const release = await mutex.acquire();
-  try {
-    usersOnline = usersOnline.filter((user) => user.socket.id !== socketId);
-  } finally {
-    release();
-  }
-}
-// ###
+const usersOnline = new UsersData();
+const usersWaiting = new UsersData();
 
 export default async function socketController(
   io: SocketServer,
   socket: Socket
 ): Promise<void> {
-  // ###
+  // ### ADD USER TO ONLINE LIST
   let { userName, userId } = socket.handshake.query;
   userId = typeof userId === "string" ? userId : "";
   userName = typeof userName === "string" ? userName : "";
+  
+  if (!usersOnline.checkUser(userId)) {
+    usersOnline.addUser({ userId, userName, socket });
+    console.log(`Client with ID ${socket.id} connected!`);
+    console.log("USER ONLINE: ", usersOnline.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
 
-  const promises = [addUser({ socket, userId, userName })];
-  await Promise.all(promises);
-  console.log(`Client with ID ${socket.id} connected!`);
-  console.log(usersOnline.map((user) => user.userName));
+    io.to("global").emit("userOnlineUpdate", {
+      message: `Client with ID ${socket.id} connected!`,
+      users: usersOnline.users.map((user) => ({
+        userId: user.userId,
+        userName: user.userName,
+        socketId: user.socket.id,
+      })),
+    });
+  }
+  // ### ADD USER TO ONLINE LIST
 
-  io.to("global").emit("userOnlineUpdate", {
-    users: usersOnline.map((user) => ({
-      userId: user.userId,
-      userName: user.userName,
-      socketId: user.socket.id,
-    })),
+  // ###
+  socket.on("matchmaking", async ({ userId, userName }) => {
+    if (!usersWaiting.checkUser(userId)) {
+      usersWaiting.addUser({ userId, userName, socket });
+      console.log(`Client with ID ${socket.id} waiting for match!`);
+      console.log("USER WAITING FOR MATCH: ", usersWaiting.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
+
+      if (usersWaiting.users.length >= 3) {
+        const roomId = `room_${uuidv4()}`;
+        const playerSelectedToMatch = usersWaiting.users.splice(0, 3);
+        playerSelectedToMatch.forEach((user: UserType) => {
+          user.socket.join(roomId);
+          user.socket.emit("matchFound", {
+            message: "Match Found",
+            roomId,
+          });
+        });
+      } else {
+        socket.emit("findingMatch", {
+          message: "Finding Match, Please Wait",
+        });
+      }
+    }
   });
   // ###
 
   // ###
   socket.on("disconnect", async () => {
-    const promises = [deleteUser(socket.id)];
-    await Promise.all(promises);
-    console.log(`Client with id ${socket.id} disconnected!`);
-    console.log(usersOnline.map((user) => user.userName));
+    usersOnline.deleteUser(socket.id);
+    usersWaiting.deleteUser(socket.id);
+    console.log(`Client with ID ${socket.id} disconnected!`);
+    console.log("USER ONLINE: ", usersOnline.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
+    console.log("USER WAITING FOR MATCH: ", usersWaiting.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
 
     io.to("global").emit("userOnlineUpdate", {
-      users: usersOnline.map((user) => ({
+      message: `Client with ID ${socket.id} disconnected!`,
+      users: usersOnline.users.map((user) => ({
         userId: user.userId,
         userName: user.userName,
         socketId: user.socket.id,

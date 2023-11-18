@@ -54,12 +54,14 @@ export default function socketController(
             score: 0,
           })),
         });
+
+        const questionsSelected = _.sampleSize(questions, 5);
         playerSelectedToMatch.forEach((user: UserType) => {
           user.socket.join(roomId);
           user.socket.emit("matchFound", {
             message: "Match Found",
             roomId,
-            questions: _.sampleSize(questions, 5),
+            questions: questionsSelected,
           });
         });
         // ### CREATE ROOM

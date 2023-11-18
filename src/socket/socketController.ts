@@ -66,7 +66,7 @@ export default function socketController(
         });
         // ### CREATE ROOM
 
-        let gameTime = 10;
+        let gameTime = 60;
         gameTimer = setInterval(() => {
           io.to(roomId).emit("matchStarted", {
             message: "Match Started",

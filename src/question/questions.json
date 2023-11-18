@@ -50,204 +50,204 @@
     "answer": "b"
   },
   {
-    "question": "Siapakah pemain sepakbola pertama yang memenangkan lima penghargaan Ballon d'Or?",
+    "question": "Apa julukan dari tim nasional sepakbola Argentina?",
     "options": {
-      "a": "Cristiano Ronaldo",
+      "a": "Azzurri",
+      "b": "Oranje",
+      "c": "Albiceleste",
+      "d": "Samba Boys"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Siapa pelatih yang membimbing tim nasional Prancis meraih gelar Piala Dunia FIFA pada tahun 1998?",
+    "options": {
+      "a": "Arsène Wenger",
+      "b": "Didier Deschamps",
+      "c": "Zinedine Zidane",
+      "d": "Raymond Domenech"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "Stadion apa yang menjadi tuan rumah final Piala Dunia FIFA 2018?",
+    "options": {
+      "a": "Maracanã",
+      "b": "Wembley",
+      "c": "Luzhniki",
+      "d": "Allianz Arena"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Pemain sepakbola mana yang dijuluki 'The Egyptian King'?",
+    "options": {
+      "a": "Mohamed Salah",
+      "b": "Ahmed Hegazi",
+      "c": "Mahmoud Hassan Trezeguet",
+      "d": "Mohamed Elneny"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Apa istilah yang digunakan untuk situasi ketika seorang pemain mencetak gol melalui tendangan langsung dari tendangan sudut?",
+    "options": {
+      "a": "Hat-trick",
+      "b": "Free kick",
+      "c": "Corner kick",
+      "d": "Own goal"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Siapakah pemain yang memenangkan Sepatu Emas Eropa (European Golden Shoe) musim 2020-2021?",
+    "options": {
+      "a": "Erling Haaland",
       "b": "Lionel Messi",
-      "c": "Michel Platini",
-      "d": "Johan Cruyff"
+      "c": "Robert Lewandowski",
+      "d": "Cristiano Ronaldo"
     },
     "answer": "b"
   },
   {
-    "question": "Pada tahun berapakah Piala Dunia FIFA pertama kali diadakan?",
+    "question": "Klub sepakbola apa yang dijuluki 'The Red Devils'?",
     "options": {
-      "a": "1928",
-      "b": "1934",
-      "c": "1950",
-      "d": "1930"
+      "a": "Liverpool",
+      "b": "Manchester United",
+      "c": "AC Milan",
+      "d": "Bayern Munich"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "Siapa pemain Brasil yang dikenal sebagai 'The Phenomenon' dan berhasil memenangkan tiga gelar FIFA World Player of the Year?",
+    "options": {
+      "a": "Ronaldinho",
+      "b": "Rivaldo",
+      "c": "Kaka",
+      "d": "Ronaldo Nazário"
     },
     "answer": "d"
   },
   {
-    "question": "Klub sepakbola mana yang memenangkan Liga Champions UEFA musim 2020-2021?",
+    "question": "Berapa lama waktu yang diberikan wasit dalam perpanjangan waktu (extra time) dalam pertandingan sepakbola internasional?",
     "options": {
-      "a": "Real Madrid",
-      "b": "FC Barcelona",
-      "c": "Manchester City",
-      "d": "Chelsea"
+      "a": "15 menit",
+      "b": "20 menit",
+      "c": "30 menit",
+      "d": "45 menit"
     },
-    "answer": "d"
+    "answer": "c"
   },
   {
-    "question": "Siapakah pencetak gol terbanyak sepanjang masa dalam sejarah Piala Dunia FIFA?",
+    "question": "Pemain sepakbola mana yang terkenal dengan julukan 'CR7'?",
     "options": {
-      "a": "Pele",
+      "a": "Lionel Messi",
+      "b": "Neymar Jr.",
+      "c": "Cristiano Ronaldo",
+      "d": "Kylian Mbappé"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Pada tahun berapakah Piala Eropa (Euro) pertama kali diadakan?",
+    "options": {
+      "a": "1956",
+      "b": "1964",
+      "c": "1972",
+      "d": "1980"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Klub sepakbola apa yang memenangkan Liga Premier Inggris musim 2020-2021?",
+    "options": {
+      "a": "Chelsea",
+      "b": "Manchester City",
+      "c": "Manchester United",
+      "d": "Liverpool"
+    },
+    "answer": "b"
+  },
+  {
+    "question": "Siapa pemain Belgia yang dijuluki 'The Flying Dutchman' dan menjadi kapten tim nasionalnya?",
+    "options": {
+      "a": "Eden Hazard",
+      "b": "Kevin De Bruyne",
+      "c": "Romelu Lukaku",
+      "d": "Vincent Kompany"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Berapa jumlah pemain dalam satu tim futsal selama pertandingan resmi?",
+    "options": {
+      "a": "5",
+      "b": "7",
+      "c": "9",
+      "d": "11"
+    },
+    "answer": "a"
+  },
+  {
+    "question": "Apa nama trofi yang diberikan kepada pemenang Liga Champions UEFA setiap tahunnya?",
+    "options": {
+      "a": "Europa Cup",
+      "b": "Champions Trophy",
+      "c": "Big-Eared Cup",
+      "d": "Henri Delaunay Trophy"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Siapa pemain Jerman yang mencetak gol kemenangan dalam final Piala Dunia FIFA 2014?",
+    "options": {
+      "a": "Thomas Müller",
       "b": "Miroslav Klose",
-      "c": "Ronaldo Nazário",
-      "d": "Diego Maradona"
+      "c": "Mario Götze",
+      "d": "Mesut Özil"
+    },
+    "answer": "c"
+  },
+  {
+    "question": "Klub sepakbola apa yang memenangkan tiga kali berturut-turut Liga Champions UEFA pada tahun 1956, 1957, dan 1958?",
+    "options": {
+      "a": "AC Milan",
+      "b": "Real Madrid",
+      "c": "Barcelona",
+      "d": "Bayern Munich"
     },
     "answer": "b"
   },
   {
-    "question": "Berapa banyak pemain dalam satu tim sepakbola selama pertandingan resmi?",
+    "question": "Siapakah pelatih yang membawa Leicester City meraih gelar Liga Premier Inggris pada musim 2015-2016?",
     "options": {
-      "a": "9",
-      "b": "11",
-      "c": "13",
-      "d": "15"
+      "a": "Brendan Rodgers",
+      "b": "Claudio Ranieri",
+      "c": "Nuno Espírito Santo",
+      "d": "José Mourinho"
     },
     "answer": "b"
   },
   {
-    "question": "Siapakah pemain sepakbola pertama yang memenangkan lima penghargaan Ballon d'Or?",
+    "question": "Berapa banyak grup yang ada dalam fase grup Piala Dunia FIFA?",
     "options": {
-      "a": "Cristiano Ronaldo",
-      "b": "Lionel Messi",
-      "c": "Michel Platini",
-      "d": "Johan Cruyff"
+      "a": "4",
+      "b": "6",
+      "c": "8",
+      "d": "10"
     },
-    "answer": "b"
+    "answer": "a"
   },
   {
-    "question": "Pada tahun berapakah Piala Dunia FIFA pertama kali diadakan?",
+    "question": "Pada tahun berapakah Piala AFC (Asian Cup) pertama kali diadakan?",
     "options": {
-      "a": "1928",
-      "b": "1934",
-      "c": "1950",
-      "d": "1930"
+      "a": "1956",
+      "b": "1964",
+      "c": "1972",
+      "d": "1980"
     },
-    "answer": "d"
-  },
-  {
-    "question": "Klub sepakbola mana yang memenangkan Liga Champions UEFA musim 2020-2021?",
-    "options": {
-      "a": "Real Madrid",
-      "b": "FC Barcelona",
-      "c": "Manchester City",
-      "d": "Chelsea"
-    },
-    "answer": "d"
-  },
-  {
-    "question": "Siapakah pencetak gol terbanyak sepanjang masa dalam sejarah Piala Dunia FIFA?",
-    "options": {
-      "a": "Pele",
-      "b": "Miroslav Klose",
-      "c": "Ronaldo Nazário",
-      "d": "Diego Maradona"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Berapa banyak pemain dalam satu tim sepakbola selama pertandingan resmi?",
-    "options": {
-      "a": "9",
-      "b": "11",
-      "c": "13",
-      "d": "15"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Siapakah pemain sepakbola pertama yang memenangkan lima penghargaan Ballon d'Or?",
-    "options": {
-      "a": "Cristiano Ronaldo",
-      "b": "Lionel Messi",
-      "c": "Michel Platini",
-      "d": "Johan Cruyff"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Pada tahun berapakah Piala Dunia FIFA pertama kali diadakan?",
-    "options": {
-      "a": "1928",
-      "b": "1934",
-      "c": "1950",
-      "d": "1930"
-    },
-    "answer": "d"
-  },
-  {
-    "question": "Klub sepakbola mana yang memenangkan Liga Champions UEFA musim 2020-2021?",
-    "options": {
-      "a": "Real Madrid",
-      "b": "FC Barcelona",
-      "c": "Manchester City",
-      "d": "Chelsea"
-    },
-    "answer": "d"
-  },
-  {
-    "question": "Siapakah pencetak gol terbanyak sepanjang masa dalam sejarah Piala Dunia FIFA?",
-    "options": {
-      "a": "Pele",
-      "b": "Miroslav Klose",
-      "c": "Ronaldo Nazário",
-      "d": "Diego Maradona"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Berapa banyak pemain dalam satu tim sepakbola selama pertandingan resmi?",
-    "options": {
-      "a": "9",
-      "b": "11",
-      "c": "13",
-      "d": "15"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Siapakah pemain sepakbola pertama yang memenangkan lima penghargaan Ballon d'Or?",
-    "options": {
-      "a": "Cristiano Ronaldo",
-      "b": "Lionel Messi",
-      "c": "Michel Platini",
-      "d": "Johan Cruyff"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Pada tahun berapakah Piala Dunia FIFA pertama kali diadakan?",
-    "options": {
-      "a": "1928",
-      "b": "1934",
-      "c": "1950",
-      "d": "1930"
-    },
-    "answer": "d"
-  },
-  {
-    "question": "Klub sepakbola mana yang memenangkan Liga Champions UEFA musim 2020-2021?",
-    "options": {
-      "a": "Real Madrid",
-      "b": "FC Barcelona",
-      "c": "Manchester City",
-      "d": "Chelsea"
-    },
-    "answer": "d"
-  },
-  {
-    "question": "Siapakah pencetak gol terbanyak sepanjang masa dalam sejarah Piala Dunia FIFA?",
-    "options": {
-      "a": "Pele",
-      "b": "Miroslav Klose",
-      "c": "Ronaldo Nazário",
-      "d": "Diego Maradona"
-    },
-    "answer": "b"
-  },
-  {
-    "question": "Berapa banyak pemain dalam satu tim sepakbola selama pertandingan resmi?",
-    "options": {
-      "a": "9",
-      "b": "11",
-      "c": "13",
-      "d": "15"
-    },
-    "answer": "b"
+    "answer": "a"
   },
   {
     "question": "Siapa pemain Argentina yang terkenal dengan julukan \"The Hand of God\" setelah mencetak gol dengan tangannya dalam Piala Dunia FIFA 1986?",

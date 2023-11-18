@@ -2,7 +2,7 @@ import { Server as SocketServer, Socket } from "socket.io";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import UsersData, { UserType } from "./data/UsersData";
-import questions from "../question/questions.json";
+import questions from "../data/questions.json";
 import RoomsData from "./data/RoomsData";
 
 const usersOnline = new UsersData();

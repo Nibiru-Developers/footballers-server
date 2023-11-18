@@ -2,11 +2,12 @@
 
 ## About The Project
 
-Repositori ini adalah Websocket Server untuk aplikasi Footballers, sebuah aplikasi kuis dengan tema Sepak Bola.
+Repositori ini adalah Websocket Server untuk aplikasi Footballers, sebuah aplikasi game kuis multiplayer dengan tema Sepak Bola.
 
 ### Technology Used
 
 - [Express](https://expressjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Socket.IO](https://socket.io/)
 
 ## Authors

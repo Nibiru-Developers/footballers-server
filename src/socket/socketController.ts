@@ -9,8 +9,6 @@ const usersOnline = new UsersData();
 const usersWaiting = new UsersData();
 const rooms = new RoomsData();
 
-let gameTimer: NodeJS.Timeout | undefined;
-
 export default function socketController(
   io: SocketServer,
   socket: Socket
@@ -67,22 +65,20 @@ export default function socketController(
         // ### CREATE ROOM
 
         let gameTime = 60;
-        gameTimer = setInterval(() => {
+        setInterval(() => {
           io.to(roomId).emit("matchStarted", {
             message: "Match Started",
             timeRemaining: gameTime,
           });
 
           if (gameTime === 0) {
-            if (gameTimer) clearInterval(gameTimer);
             io.to(roomId).emit("matchFinished", {
               message: "Match Finished",
             });
 
-            const roomDeletor = setTimeout(() => {
+            setTimeout(() => {
               rooms.deleteRoom(roomId);
               console.log(`ROOM WITH ID ${roomId} DELETED`);
-              clearTimeout(roomDeletor);
             }, 300000);
           }
           gameTime--;

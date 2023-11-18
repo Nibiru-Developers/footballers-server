@@ -79,6 +79,7 @@ export default function socketController(
 
           if (gameTime === 0) {
             if (roomTimers[roomId]) clearInterval(roomTimers[roomId]);
+            delete roomTimers[roomId];
             io.to(roomId).emit("matchFinished", {
               message: "Match Finished",
             });
@@ -87,6 +88,7 @@ export default function socketController(
               rooms.deleteRoom(roomId);
               console.log(`ROOM WITH ID ${roomId} DELETED`);
               if (roomDeletors[roomId]) clearTimeout(roomDeletors[roomId]);
+              delete roomDeletors[roomId];
             }, 300000);
           }
           gameTime--;

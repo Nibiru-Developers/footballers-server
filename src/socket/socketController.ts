@@ -3,16 +3,18 @@ import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import UsersData, { UserType } from "./data/UsersData";
 import questions from "../question/questions.json";
+import RoomsData from "./data/RoomsData";
 
 const usersOnline = new UsersData();
 const usersWaiting = new UsersData();
+const rooms = new RoomsData();
 
 let gameTimer: NodeJS.Timeout | undefined;
 
-export default async function socketController(
+export default function socketController(
   io: SocketServer,
   socket: Socket
-): Promise<void> {
+): void {
   // ### ADD USER TO ONLINE LIST
   let { userName, userId } = socket.handshake.query;
   userId = typeof userId === "string" ? userId : "";
@@ -21,12 +23,7 @@ export default async function socketController(
   if (!usersOnline.checkUser(userId)) {
     usersOnline.addUser({ userId, userName, socket });
     console.log(`Client with ID ${socket.id} connected!`);
-    console.log(
-      "USER ONLINE: ",
-      usersOnline.users.map(
-        (user) => `${user.userId} - ${user.userName} - ${user.socket.id}`
-      )
-    );
+    console.log("USER ONLINE: ", usersOnline.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
 
     io.to("global").emit("userOnlineUpdate", {
       message: `Client with ID ${socket.id} connected!`,
@@ -40,20 +37,23 @@ export default async function socketController(
   // ### ADD USER TO ONLINE LIST
 
   // ### MATCHMAKING
-  socket.on("matchmaking", async ({ userId, userName }) => {
+  socket.on("matchmaking", ({ userId, userName }) => {
     if (!usersWaiting.checkUser(userId)) {
       usersWaiting.addUser({ userId, userName, socket });
       console.log(`Client with ID ${socket.id} waiting for match!`);
-      console.log(
-        "USER WAITING FOR MATCH: ",
-        usersWaiting.users.map(
-          (user) => `${user.userId} - ${user.userName} - ${user.socket.id}`
-        )
-      );
+      console.log("USER WAITING FOR MATCH: ", usersWaiting.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
 
       if (usersWaiting.users.length >= 3) {
+        // ### CREATE ROOM
         const roomId = `room_${uuidv4()}`;
         const playerSelectedToMatch = usersWaiting.users.splice(0, 3);
+        rooms.addRoom({
+          roomId,
+          members: playerSelectedToMatch.map((player) => ({
+            user: player,
+            score: 0,
+          })),
+        });
         playerSelectedToMatch.forEach((user: UserType) => {
           user.socket.join(roomId);
           user.socket.emit("matchFound", {
@@ -62,6 +62,7 @@ export default async function socketController(
             questions: _.sampleSize(questions, 5),
           });
         });
+        // ### CREATE ROOM
 
         let gameTime = 10;
         gameTimer = setInterval(() => {
@@ -69,11 +70,18 @@ export default async function socketController(
             message: "Match Started",
             timeRemaining: gameTime,
           });
+
           if (gameTime === 0) {
             if (gameTimer) clearInterval(gameTimer);
             io.to(roomId).emit("matchFinished", {
               message: "Match Finished",
             });
+
+            const roomDeletor = setTimeout(() => {
+              rooms.deleteRoom(roomId);
+              console.log(`ROOM WITH ID ${roomId} DELETED`);
+              clearTimeout(roomDeletor);
+            }, 300000);
           }
           gameTime--;
         }, 1000);
@@ -86,23 +94,32 @@ export default async function socketController(
   });
   // ### MATCHMAKING
 
+  // ### STORE SCORE
+  socket.on("storeScore", ({ userId, roomId, score }) => {
+    rooms.changeScore(userId, roomId, score);
+
+    io.to(roomId).emit("giveResultScore", {
+      message: "Result Score",
+      scores: rooms.rooms
+        .filter((room) => room.roomId === roomId)
+        .map((room) => {
+          return room.members.map((user) => ({
+            userId: user.user.userId,
+            userName: user.user.userName,
+            score: user.score,
+          }));
+        })[0],
+    });
+  });
+  // ### STORE SCORE
+
   // ### DISCONNECT
-  socket.on("disconnect", async () => {
+  socket.on("disconnect", () => {
     usersOnline.deleteUser(socket.id);
     usersWaiting.deleteUser(socket.id);
     console.log(`Client with ID ${socket.id} disconnected!`);
-    console.log(
-      "USER ONLINE: ",
-      usersOnline.users.map(
-        (user) => `${user.userId} - ${user.userName} - ${user.socket.id}`
-      )
-    );
-    console.log(
-      "USER WAITING FOR MATCH: ",
-      usersWaiting.users.map(
-        (user) => `${user.userId} - ${user.userName} - ${user.socket.id}`
-      )
-    );
+    console.log("USER ONLINE: ", usersOnline.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
+    console.log("USER WAITING FOR MATCH: ", usersWaiting.users.map((user) => `${user.userId} - ${user.userName} - ${user.socket.id}`));
 
     io.to("global").emit("userOnlineUpdate", {
       message: `Client with ID ${socket.id} disconnected!`,
